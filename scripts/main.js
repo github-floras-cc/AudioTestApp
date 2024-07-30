@@ -327,9 +327,9 @@ function getDefaultDevice(deviceType, spanToPopulate ) { //Functions collects th
 			console.log(devices); 
 			devices.forEach((device) => {
 				if (`${device.kind}` != "videoinput") {
-					if (`${device.label}` == "") {
+					if (`${device.label}` == "" && document.getElementById("stepWarningSettingsInfo").innerHTML == "") {
 						//If label is Null this indicates that no permission was given in the browser for accessing the microfoon (could be a popup)
-						showIssue(deviceType, "Geen browser permissie om microfoon/speaker te gebruiken. Geef toestemming.");
+						showIssue(deviceType, "<font color='red'>Geen browser permissie om microfoon/speaker te gebruiken.</font>");
 						return true;
 					}
 
