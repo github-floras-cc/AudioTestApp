@@ -283,19 +283,21 @@ function getDefaultDevice(deviceType, spanToPopulate ) { //Functions collects th
 		.then((devices) => {
 			console.log(devices); 
 			devices.forEach((device) => {
-				if (`${device.label}` == "") {
-					//If label is Null this indicates that no permission was given in the browser for accessing the microfoon (could be a popup)
-					showIssue(deviceType, "Geen toestemming om audio (" + deviceType + ") te gebruiken. Zie instructies.");
-					return true;
-				}
-
-				if (`${device.kind}` == deviceType) {
-					var device_string = `${device.label}`;		
-					if (device_string.startsWith("Default") || device_string.startsWith("Standaard")) {
-						document.getElementById(spanToPopulate).innerHTML = `${device.label}`;
+				if (`${device.kind}` != "videoinput") {
+					if (`${device.label}` == "") {
+						//If label is Null this indicates that no permission was given in the browser for accessing the microfoon (could be a popup)
+						showIssue(deviceType, "Geen toestemming om audio (" + deviceType + ") te gebruiken. Zie instructies.");
 						return true;
-						}
 					}
+
+					if (`${device.kind}` == deviceType) {
+						var device_string = `${device.label}`;		
+						if (device_string.startsWith("Default") || device_string.startsWith("Standaard")) {
+							document.getElementById(spanToPopulate).innerHTML = `${device.label}`;
+							return true;
+							}
+						}
+				}
 				});
 			})
 		.catch((err) => {
