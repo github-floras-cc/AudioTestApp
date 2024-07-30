@@ -152,14 +152,11 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		document.getElementById('buttonStep2').disabled  = false;
 		document.getElementById("stepOverlay2").style.opacity = 100;
 		document.getElementById("stepOverlay2").style.backgroundColor = "transparent";	
-		document.getElementById("stepOverlay3").style.opacity = 0.3;
 		document.getElementById("stepWarningSettings").style.display = "none";
 		document.getElementById("stepWarningSettingsInfo").innerHTML = "";
 		}
 	
 	if (stepId == 2){
-		document.getElementById("stepOverlay3").style.opacity = 0.3;
-		document.getElementById("stepOverlay2").style.backgroundColor = "#ffffff";	
 		document.getElementById("imgDeviceStatusInput").src = "media/icon_progress.gif";
 		document.getElementById("imgDeviceStatusOutput").src = "media/icon_progress.gif";
 		document.getElementById("stepWarningSettings").style.display = "none";
