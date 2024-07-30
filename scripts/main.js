@@ -98,7 +98,7 @@ async function queryBrowserMicrophonePermission () {
 
 		} else if (result.state == 'denied') {
 			console.log("Browser is ingesteld om deze website niet toe te staan de microfoon te gebruiken."); 
-			//alert("Browser is ingesteld om deze website niet toe te staan de microfoon te gebruiken."); 			
+			alert("Browser is laat deze website niet toe om de microfoon te gebruiken."); 			
 		}
 
 	result.onchange = ev => {
@@ -122,7 +122,7 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 	// Parameter 1: integer : Step number (1 2 or 3)
 	// Parameter 2: 
 
-	if (stepId < 2 || stepId > 3){
+	if (stepId < 1 || stepId > 3){
 		return false;
 		}
 
@@ -146,6 +146,19 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 	showDiv(activeStepDivName, 1);
 	//Remove opacity from the relevant division
 	//document.getElementById(overlayToUnGrey).style.opacity = 100;
+
+	if (stepId == 1){
+		document.getElementById('buttonStep2').className = 'buttonActive';
+		document.getElementById('buttonStep2').disabled  = false;
+		document.getElementById("stepOverlay2").style.opacity = 100;
+		document.getElementById("stepOverlay2").style.backgroundColor = "transparent";	
+		document.getElementById("stepOverlay3").style.opacity = 0.3;
+		document.getElementById("stepWarningSettings").style.display = "none";
+		document.getElementById("stepWarningSettingsInfo").innerHTML = "";
+
+		document.getElementById('buttonStep2').disabled  = false;
+		document.getElementById('buttonStep2').className = 'buttonActive';
+		}
 	
 	if (stepId == 2){
 		document.getElementById('buttonStep2').className = 'buttonActive';
