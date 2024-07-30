@@ -76,7 +76,7 @@
 			</div>
 			<div id="imgDeviceStatusVolLevelContainer"><div id="imgDeviceStatusInputLevel"></div></div>
 			
-			<div id="stepWarningSettings" class="stepWarning"><div class="stepWarningContentTextHeader">Let op: Je audio-instellingen staan nog niet goed</div><div id="stepWarningSettingsInfo" class="stepWarningSettingsInfo"></div>In de instructies lees je hoe je je audio juist kunt instellen.<br><a href="https://abnamro.sharepoint.com/sites/intranet-applicaties_nice" target="_blank">Lees meer ></a><div id="enableTestAudioStepContainer"><input id="enableTestAudioStep" type="checkbox" onclick="javascript: enableTestAudioStep();"> Alsnog geluidstest activeren</div></div>
+			<div id="stepWarningSettings" class="stepWarning"><div class="stepWarningContentTextHeader">Let op: Je audio-instellingen staan nog niet goed</div><div id="stepWarningSettingsInfo" class="stepWarningSettingsInfo"></div>In de instructies lees je hoe je je audio juist kunt instellen.<br><br><a href="https://abnamro.sharepoint.com/sites/intranet-applicaties_nice" target="_blank">Lees meer ></a><div id="enableTestAudioStepContainer"><input id="enableTestAudioStep" type="checkbox" onclick="javascript: enableTestAudioStep();"> Alsnog geluidstest activeren</div></div>
 			<input type="submit" id="buttonStep2" class="buttonInactive" value="Start check opnieuw" onclick="javascript:execStep(2);"> 
 		</div>
 	</div>
@@ -86,7 +86,7 @@
 		<div class="stepIcon"><img alt="" src="media/step_3.gif" class="stepIcon"></div><h3>Controleer of het geluid uit de headset komt</h3>
 		<div class="stepContentText">Test nu of het geluid werkt. Let op: Je eigen stem wordt op de headset afgespeeld. Controleer eerst of het volume niet te hard staat. Als je de test via je laptop afspeelt kan er een hard geluid optreden.</div>
 		<input type="submit" id="buttonStep3" class="buttonInactive" value="Test mijn geluid"  onclick="javascript:execStep(3);"> 
-		<input type="submit" id="buttonStep3_1" class="buttonInactive" value="Stop / Start opnieuw"  onclick="javascript:window.location = 'index.html';">
+		<input type="submit" id="buttonStep3_1" class="buttonInactive" value="Stop / Start opnieuw"  onclick="javascript:window.location.reload();">
 	</div>
 	</div>
 </div>
@@ -98,6 +98,13 @@
 	<script>
 	const audio = document.querySelector('audio');
 	const constraints = window.constraints = {audio: true, video: false};
+	const MIC_PERM_BUTTON = document.querySelector('#buttonStep1');
+		MIC_PERM_BUTTON.addEventListener('click', async ev => {
+		console.debug('Mic perm:', 'button click:', ev);
+		setTimeout(() => queryBrowserMicrophonePermission(), 200);
+		const res = await launchBrowserMicrophoneAllowPrompt();
+		queryBrowserMicrophonePermission();
+	});
 	</script>
 </div>
 
