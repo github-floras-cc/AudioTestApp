@@ -68,6 +68,49 @@ function testRTCAudioHandleError(error) { //Function which logs an error if test
 
 /*
 ***********************************
+Audio device permissions
+***********************************
+Set of functions to trigger dialogue to enable microphone access. 
+Nick Freear, 16-Sep-2020.
+
+* https://gist.github.com/nfreear/4fccbc1d3091aa71254a7262b113a23b
+* https://developers.google.com/web/fundamentals/media/recording-audio/#ask_permission_to_use_microphone_responsibly
+* https://emojipedia.org/search/?q=mic
+*/
+
+async function launchBrowserMicrophoneAllowPrompt () {
+	try { // Initiate the browser prompt.
+		const res = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+		console.warn('Mic perm:', 'allow:', res);
+		return res;
+		} 
+	catch (err) {
+		console.warn('Mic perm:', 'block:', err); // "DOMException: Permission denied"
+		return false;
+		}
+	}
+
+async function queryBrowserMicrophonePermission () {
+	const result = await navigator.permissions.query({ name: 'microphone' });
+
+	if (result.state == 'granted') {
+		} else if (result.state == 'prompt') {
+
+		} else if (result.state == 'denied') {
+			console.log("Browser is ingesteld om deze website niet toe te staan de microfoon te gebruiken."); 
+			//alert("Browser is ingesteld om deze website niet toe te staan de microfoon te gebruiken."); 			
+		}
+
+	result.onchange = ev => {
+		console.warn('Mic perm:', 'onchange:', ev);
+		};
+
+	console.warn('Mic perm:', 'state:', result.state, result);
+	return result;
+	}
+
+/*
+***********************************
 UI / Logic functions
 ***********************************
 Set of functions to support the steps/flows and holding the logic when to make options available
@@ -286,7 +329,7 @@ function getDefaultDevice(deviceType, spanToPopulate ) { //Functions collects th
 				if (`${device.kind}` != "videoinput") {
 					if (`${device.label}` == "") {
 						//If label is Null this indicates that no permission was given in the browser for accessing the microfoon (could be a popup)
-						showIssue(deviceType, "Geen toestemming om audio (" + deviceType + ") te gebruiken. Zie instructies.");
+						showIssue(deviceType, "Geen browser permissie om microfoon/speaker te gebruiken. Geef toestemming.");
 						return true;
 					}
 
