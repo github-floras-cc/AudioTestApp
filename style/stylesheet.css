@@ -1,0 +1,249 @@
+/* 
+****************************************
+Section with main elements
+****************************************
+*/
+div.mainContainer { /* Main container being centered*/
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;	
+	}	
+div.stepOverlay { /* div overlay per step which to en/disable steps*/
+	background-color: #FFFFFF;
+	opacity: 0.3;
+	margin-left: auto;
+	margin-right: auto;	
+	}
+div.mediaObjects { /* hidden div holding the stream objects */
+	display: none;
+	}
+
+
+/* 
+****************************************
+Section with elements for the title box
+****************************************
+*/	
+div.titleBox { /* first div with the main title and the progress indicator */
+	text-align: center;
+	width: 600px;
+	background-color: #E9F0F0;
+	color: #666666;
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;	
+	margin-top: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	}
+div.titleBox_step1 { /* progress indicator 1*/
+	float: left;
+	margin-left: 75px;
+	}
+div.titleBox_step2 { /* progress indicator 2*/
+	display: none;
+	float: left;
+	margin-left: 75px;
+	}
+div.titleBox_step3 { /* progress indicator 3*/
+	display: none;
+	float: left;
+	margin-left: 75px;
+	}
+img.titleBox_progressBar { /* progress indicator image*/
+	vertical-align: middle; 
+	margin-right: 5px; 	
+	width: 200px;
+	}
+
+
+/* 
+****************************************
+Section with elements for each step
+****************************************
+*/
+div.step { /* Container for each step full width*/
+	padding-top: 20px;
+	margin-top: 20px;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+div.stepIcon { /* div for step counter holding image*/
+	float: left;
+	width: 6%;
+	font-size: 17px;
+	font-weight: 600;
+	}
+img.stepIcon { /* image with counter*/
+	vertical-align: middle; 
+	margin-right: 10px; 
+	margin-left: 5px; 
+	margin-top: 4px;
+	width: 20px;
+	}
+
+div.stepWarning { /* div with warning content as part of step 2*/
+	position: relative;
+	float: left;
+	display: none;
+	width: 600px;
+	margin-bottom: 20px;
+	background-color: #E9F0F0;
+	padding: 15px;
+	line-height: 1.2rem;
+	}
+div.stepWarningSettingsInfo { /* div with variable warning text dependent on the issue, UL */
+	
+	}
+#enableTestAudioStepContainer { /* div in Warning division which holds the text for the checkbox to enable audio test */
+	font-size: 12px;
+	margin-top: 10px;
+	}
+div.stepWarningContentTextHeader {	 /* Title of the Warning dialogue*/
+	color: #2D4D4D;
+	font-weight: 600;
+	padding-bottom: 10px;
+	}	
+div.stepContentText { /* div intro text as part of each step*/
+	padding-bottom: 10px;
+	}
+
+
+/* 
+****************************************
+Section with device info
+****************************************
+*/
+div.deviceInfoContainer { /* Main container holding 2 rows, one for input, one for output*/
+	width: 585px;
+	float: left;
+	margin-bottom: 20px;
+	transform:
+		perspective(600px)
+		rotateY(-0deg);
+	transition: transform 1s ease 0s;
+	border-radius: 1px;
+	box-shadow:
+		rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
+		rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+		rgba(0, 0, 0, 0.03) 0px 0px 4px 0px,
+		rgba(0, 0, 0, 0.1) 0px 5px 10px 0px;
+	}
+div.deviceInfo { /* One row container for input, one for output*/
+	width: 585px;
+	position: relative;
+	border-top: 0.01em;
+	border-bottom: 0em;
+	border-color: #D7D7D7;
+	border-style: solid;
+	height: 50px;
+	}
+div.deviceIcon { /* First block holding icon for in or output*/
+	float: left;
+	width: 50px;
+	text-align: center;
+	height: 50px;
+	}
+img.deviceIcon { /* image icon for in or output*/
+	width: 30px;
+	vertical-align: center;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	}
+div.deviceDefaultInfo { /* Second block holding device info for in or output*/
+	float: left;
+	width: 480px;
+	height: 50px;
+	}
+div.deviceDefaultInfoTitle{ /* Second block Title of device for in or output*/
+	font-weight: 600;
+	font-size: 12px;
+	margin-bottom: 3px;
+	margin-top: 4px;
+	color: #00716B;
+	}
+div.deviceDefaultInfoText{ /* Second block holding text of device for in or output*/
+	font-size: 12px;	
+	margin-bottom: 10px;
+	color: #4F706F;
+	}
+div.deviceStatus { /* Third block holding (error) status of device for in or output*/
+	float: right;
+	width: 45px;
+	text-align: center;
+	height: 50px;
+	}
+#imgDeviceStatusVolLevelContainer { /* Single division holding the volume meter right of the devices to be used during audio test*/
+	background-image: url("../media/icon_volumemeter.gif");	
+	float: right;
+	transform: rotate(180deg);
+	height: 100px; 
+	width: 14px; 
+	border-color: #1E827D;
+	border-style: dashed;
+	border-width: 0px;
+	}
+#imgDeviceStatusInputLevel{ /* Small div which height is changed based on rtc outpul level */
+	height: 0px; 
+	width: 15px; 
+	background-color: #1E827D;	
+	}
+
+/* 
+****************************************
+The rest, button design
+****************************************
+*/
+
+.buttonActive { /* An active button */
+        font-family: Roboto, sans-serif;
+        font-size: 12px;
+        border-style: solid;
+        border-color: #FFD200;
+        color: #000000;
+        background-color: #FFD200;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+		height: 26px;
+		width: 120px;
+        }
+.buttonInactive { /* An Inactive button */
+        font-family: Roboto, sans-serif;
+        font-size: 12px;
+        border-style: solid;
+        border-color: #C0D1D0;
+        color: #00716B;
+        background-color: #EDF7F7;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 1px;
+		height: 26px;
+		width: 120px;   
+   }
+.buttonActive:active { /* button hover behavior*/
+    vertical-align: top;
+    padding: 8px 13px 6px;
+	border-color: #A48700;
+	}
+.buttonActive:hover {  /* button hover behavior*/
+	border-color: #A48700;
+	}
+.buttonInactive:active {  /* button hover behavior*/
+    vertical-align: top;
+    padding: 8px 13px 6px;
+	border-color: #1E827D;
+	}
+.buttonInactive:hover {  /* button hover behavior*/
+	border-color: #1E827D;
+	}
+
+
+
+
+
