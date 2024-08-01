@@ -1,0 +1,39 @@
+{
+    "titleBox_mainTitle": "Test your audio settings",
+	"titleBox_progressBar1Title": "Step 1 of 3",
+	"titleBox_progressBar2Title": "Step 2 of 3",
+	"titleBox_progressBar3Title": "Step 3 of 3",
+	"step1Title": "Test your audio settings",
+	"step2Title": "Check if the headset is the default device",
+	"step3Title": "Check if sound is working via the headset", 
+	"step1Text": "Test your microphone and speaker settings to assure correct configuration of the headset. During the test you will see which audio device is the default device for microphone and output/speakers. You can also perform an audiotest to make sure the headset works properly.",
+	"step2Text": "Your headset must be configured as default device for microphone (input/recording) and speakers (output/playback). It is possible other devices are set as default due to windows patching and/or the order in which you connect (new) audio devices. When the headset is not configured correctly, it is possible the customer can not hear you or the other way around.",
+	"step3Text": "Test if audio is audible on your headset. WARNING: Your own voice/microphone will be played back on your headset. Check if the volume level is set properly. When you run this test via your laptop audio devices a loud noise might occur (feedback).",
+	"step1Button1": "Start",
+	"step2InputDeviceTitle": "Microphone",
+	"step2OutputDeviceTitle": "Speaker",
+	"stepWarningContentTextHeader": "WARNING: Your audio settings are probably not correct",
+	"stepWarningContentText": "In the instruction you can find walkthroughs for correct configuration.",
+	"stepWarningContentLinkText": "Read more",
+	"stepWarningCheckbox": "Ignore warnings and enable audiotest",
+	"buttonStep1": "Start",
+	"buttonStep2": "Restart check",
+	"buttonStep3a": "Start audiotest",
+	"buttonStep3b": "Stop audiotest",
+	"buttonStep3_1": "Restart",
+	
+	
+	"Error0": "Browser is actively blocking website to not use your microphone devices.",
+	"Error1": "Browser is actively blocking website to not use your speaker devices.",
+	"Error2": "No microphone found to use for audio.",
+	"Error3": "A laptop microphone is being used.",
+	"Error4": "No speaker/output devices found for audio.",
+	"Error5": "A laptop speaker is being used.",
+	"Error6": "A monitor speaker is being used.",
+	"Error7": "",
+	"Error8": "",
+	"Error9": "",
+	"Error10": ""
+	
+	
+}

@@ -1,0 +1,38 @@
+{
+    "titleBox_mainTitle": "Test je audio instellingen",
+	"titleBox_progressBar1Title": "Stap 1 van 3",
+	"titleBox_progressBar2Title": "Stap 2 van 3",
+	"titleBox_progressBar3Title": "Stap 3 van 3",
+	"step1Title": "Test je audio instellingen",
+	"step2Title": "Controleer of de headset het standaardapparaat is",
+	"step3Title": "Controleer of het geluid uit de headset komt", 
+	"step1Text": "Test je microfoon- en luidsprekerinstellingen om zeker te weten dat de Windows instellingen van de headset juist zijn ingesteld. Tijdens deze test zie je welk apparaat als standaard is ingesteld voor speaker (output) en microfoon (input). Je kan ook het geluid testen om zeker te zijn dat de audio over de headset loopt.",
+	"step2Text": "Je headset moet voor zowel microfoon als speaker op standaardapparaat ingesteld staan. Het kan zijn dat er een ander audioapparaat als standaardapparaat staat ingesteld door Windows patches of de volgorde van het aansluiten van (nieuwe) apparaten. Hierdoor kan het zijn dat je geen geluid hoort op je headset en dat de klant jou niet hoort of andersom.",
+	"step3Text": "Test nu of het geluid werkt. LET OP: Je eigen stem wordt op de headset afgespeeld. Controleer eerst of het Windows audio volume juist ingesteld. Als je de test via je laptop afspeelt in plaats van de headset kan er een hard geluid optreden (feedback).",
+	"step2InputDeviceTitle": "Microfoon",
+	"step2OutputDeviceTitle": "Speaker",
+	"stepWarningContentTextHeader": "LET OP: Je audio-instellingen staan waaschijnlijk nog niet juist",
+	"stepWarningContentText": "In de instructies lees je hoe je je audio-instellingen kunt corrigeren.",
+	"stepWarningContentLinkText": "Lees meer",
+	"stepWarningCheckbox": "Negeer waarschuwingen en activeer geluidstest",
+	"buttonStep1": "Start",
+	"buttonStep2": "Herstart controle",
+	"buttonStep3a": "Start geluidstest",
+	"buttonStep3b": "Stop geluidstest",
+	"buttonStep3_1": "Opnieuw beginnen",
+	
+	
+	"Error0": "Browser is ingesteld om deze website te blokkeren voor microfoon-gebruik.",
+	"Error1": "Browser is ingesteld om deze website te blokkeren voor speaker-gebruiken.",
+	"Error2": "Geen microfoon gevonden om te gebruiken voor audio.",
+	"Error3": "De laptop microfoon wordt gebruikt.",
+	"Error4": "Geen speaker apparaat gevonden om te gebruiken voor audio.",
+	"Error5": "De laptop speaker wordt gebruikt.",
+	"Error6": "De monitor speaker wordt gebruikt.",
+	"Error7": "",
+	"Error8": "",
+	"Error9": "",
+	"Error10": ""
+	
+	
+}
