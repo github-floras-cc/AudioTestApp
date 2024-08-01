@@ -97,8 +97,10 @@ async function queryBrowserMicrophonePermission () {
 		} else if (result.state == 'prompt') {
 
 		} else if (result.state == 'denied') {
-			console.log("Browser is ingesteld om deze website niet toe te staan de microfoon te gebruiken."); 
-			alert("Browser is laat deze website niet toe om de microfoon te gebruiken."); 			
+			if (document.getElementById("stepWarningSettingsInfo").innerHTML == "") {
+				showIssue("audioinput", "<font color='red'>" + document.getElementById("Error0").innerHTML + "<font>");	
+				showIssue("audiooutput", "<font color='red'>" + document.getElementById("Error1").innerHTML + "<font>");	
+			}
 		}
 
 	result.onchange = ev => {
@@ -137,8 +139,10 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 	document.getElementById('buttonStep1').disabled  = true;
 	document.getElementById('buttonStep2').className = 'buttonInactive';
 	document.getElementById('buttonStep2').disabled  = true;
-	document.getElementById('buttonStep3').className = 'buttonInactive';
-	document.getElementById('buttonStep3').disabled  = true;
+	document.getElementById('buttonStep3a').className = 'buttonInactive';
+	document.getElementById('buttonStep3a').disabled  = true;
+	document.getElementById('buttonStep3b').className = 'buttonInactive';
+	document.getElementById('buttonStep3b').disabled  = true;
 	document.getElementById('buttonStep3_1').className = 'buttonInactive';
 	document.getElementById('buttonStep3_1').disabled  = true;
 	
@@ -154,6 +158,7 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		document.getElementById("stepOverlay2").style.backgroundColor = "transparent";	
 		document.getElementById("stepWarningSettings").style.display = "none";
 		document.getElementById("stepWarningSettingsInfo").innerHTML = "";
+		execStep(2);
 		}
 	
 	if (stepId == 2){
@@ -161,6 +166,8 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		document.getElementById("imgDeviceStatusOutput").src = "media/icon_progress.gif";
 		document.getElementById("stepWarningSettings").style.display = "none";
 		document.getElementById("stepWarningSettingsInfo").innerHTML = "";
+		document.getElementById("enableTestAudioStep").checked = false;
+		enableTestAudioStep();
 		
 		getDefaultDevice("audioinput", "deviceInputDefaultInfoText");
 		getDefaultDevice("audiooutput", "deviceOutputDefaultInfoText");
@@ -168,8 +175,10 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		}
 
 	if (stepId == 3){
-		document.getElementById('buttonStep3').className = 'buttonActive';
-		document.getElementById('buttonStep3').disabled  = false;
+		document.getElementById('buttonStep3a').className = 'buttonActive';
+		document.getElementById('buttonStep3a').disabled  = false;
+		document.getElementById('buttonStep3b').className = 'buttonActive';
+		document.getElementById('buttonStep3b').disabled  = false;
 		document.getElementById('buttonStep3_1').className = 'buttonActive';
 		document.getElementById('buttonStep3_1').disabled  = false;
 		document.getElementById("stepOverlay3").style.opacity = 100;
@@ -177,11 +186,32 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		document.getElementById('buttonStep2').className = 'buttonActive';
 		document.getElementById('buttonStep2').disabled  = false;
 		testRTCAudio();
+		document.getElementById('buttonStep3a').style.display = "none";	
+		document.getElementById('buttonStep3b').style.display = "block";
+		document.getElementById('buttonStep3a').onclick = function() {toggleAudioTest()};		
 		}		
 
 	return true;
 	}
 
+function toggleAudioTest() { //Function which stops and starts the audio test
+	// Functions//Function which stops and starts the audio test
+	// Returns: boolean
+	// Parameter 1: <none>
+	if (document.getElementById('buttonStep3a').style.display == "none") {
+		//We are playing sound and should stop it and enable the test sound button
+		document.getElementById('gum-local').pause();
+		document.getElementById('buttonStep3a').style.display = "block";	
+		document.getElementById('buttonStep3b').style.display = "none";
+		}
+	else {
+		//We are not sound and should start it and enable the stop sound button
+		document.getElementById('gum-local').play();
+		document.getElementById('buttonStep3a').style.display = "none";	
+		document.getElementById('buttonStep3b').style.display = "block";
+		}
+	}
+	
 function enableTestAudioStep() { //Function which enables step 3 audiotest irrespective of default devices 
 	// Functions enables the UI of step 3 to do the audio tsst when the checkbox is checked to be able to test audio despite not having a headset. 
 	// Returns: boolean
@@ -189,16 +219,20 @@ function enableTestAudioStep() { //Function which enables step 3 audiotest irres
 	if (document.getElementById("enableTestAudioStep").checked == true) {
 		document.getElementById("stepOverlay3").style.opacity = 100;
 		document.getElementById("stepOverlay3").style.backgroundColor = "transparent";		
-		document.getElementById('buttonStep3').className = 'buttonActive';
-		document.getElementById('buttonStep3').disabled  = false;
+		document.getElementById('buttonStep3a').className = 'buttonActive';
+		document.getElementById('buttonStep3a').disabled  = false;
+		document.getElementById('buttonStep3b').className = 'buttonActive';
+		document.getElementById('buttonStep3b').disabled  = false;
 		document.getElementById('buttonStep3_1').className = 'buttonActive';
 		document.getElementById('buttonStep3_1').disabled  = false;
 		}
 	else {
 		document.getElementById("stepOverlay3").style.opacity = 0.3;
 		document.getElementById("stepOverlay3").style.backgroundColor = "#ffffff";		
-		document.getElementById('buttonStep3').className = 'buttonInactive';
-		document.getElementById('buttonStep3').disabled  = true;
+		document.getElementById('buttonStep3a').className = 'buttonInactive';
+		document.getElementById('buttonStep3a').disabled  = true;
+		document.getElementById('buttonStep3b').className = 'buttonInactive';
+		document.getElementById('buttonStep3b').disabled  = true;
 		document.getElementById('buttonStep3_1').className = 'buttonInactive';
 		document.getElementById('buttonStep3_1').disabled  = true;		
 		}
@@ -248,8 +282,10 @@ function triggerCheck() { // Is called by execStep and iniates the checks after 
 		// If no error was rendered then we can enable the audio test step!
 		if (document.getElementById("stepWarningSettingsInfo").innerHTML.trim() == "")
 			{
-			document.getElementById('buttonStep3').className = 'buttonActive';
-			document.getElementById('buttonStep3').disabled  = false;
+			document.getElementById('buttonStep3a').className = 'buttonActive';
+			document.getElementById('buttonStep3a').disabled  = false;
+			document.getElementById('buttonStep3b').className = 'buttonActive';
+			document.getElementById('buttonStep3b').disabled  = false;
 			document.getElementById('buttonStep3_1').className = 'buttonActive';
 			document.getElementById('buttonStep3_1').disabled  = false;
 			document.getElementById("stepOverlay3").style.opacity = 100;
@@ -271,13 +307,13 @@ function validateDefaultDevices(deviceType) { // Logic to determine if there is 
 	// Parameter 1: string : audioinput - or - audiooutput to be checked.
 	if (deviceType == "audioinput") {
 		if (document.getElementById("deviceInputDefaultInfoText").innerHTML == "" ) {
-			showIssue("audioinput", "Geen microfoon gevonden om te gebruiken voor audio.");
+			showIssue("audioinput", document.getElementById("Error2").innerHTML);
 			return true;
 			}
 
 		str2check = document.getElementById("deviceInputDefaultInfoText").innerHTML;
 		if (str2check.includes("Realtek")) {
-			showIssue("audioinput", "De laptop microfoon wordt gebruikt.");
+			showIssue("audioinput", document.getElementById("Error3").innerHTML);
 			return true;
 			}
 
@@ -286,19 +322,18 @@ function validateDefaultDevices(deviceType) { // Logic to determine if there is 
 	}
 
 	if (deviceType == "audiooutput") {
-		//alert( document.getElementById("deviceOutputDefaultInfoText").innerHTML );
 		if (document.getElementById("deviceOutputDefaultInfoText").innerHTML == "") {
-			showIssue("audiooutput", "Geen speaker apparaat gevonden om te gebruiken voor audio.");
+			showIssue("audiooutput", document.getElementById("Error4").innerHTML);
 			return true;
 			}
 
 		str2check = document.getElementById("deviceOutputDefaultInfoText").innerHTML;
 		if (str2check.includes("Realtek")) {
-			showIssue("audiooutput", "De laptop speaker wordt gebruikt.");
+			showIssue("audiooutput", document.getElementById("Error5").innerHTML);
 			return true;
 			}
 		if (str2check.includes("Display")) {
-			showIssue("audiooutput", "De monitor speaker wordt gebruikt.");
+			showIssue("audiooutput", document.getElementById("Error6").innerHTML);
 			return true;
 			}
 	
@@ -353,3 +388,27 @@ function getDefaultDevice(deviceType, spanToPopulate ) { //Functions collects th
 		
 	return true;
 	}
+
+/*
+***********************************
+UI / Language functions
+***********************************
+Set of functions to support dual language
+*/
+function updateContent(langData) { //Function which updates all DOM elements with the value per key
+	document.querySelectorAll('[data-i18n]').forEach(element => {
+		const key = element.getAttribute('data-i18n');
+		element.textContent = langData[key];
+		});
+	document.getElementById("buttonStep1").value = langData["buttonStep1"];
+	document.getElementById("buttonStep2").value = langData["buttonStep2"];
+	document.getElementById("buttonStep3a").value = langData["buttonStep3a"];
+	document.getElementById("buttonStep3b").value = langData["buttonStep3b"];	
+	document.getElementById("buttonStep3_1").value = langData["buttonStep3_1"];
+	}
+
+async function fetchLanguageData(lang) { // // Function which gets the browser language and loads the appropriate json file.
+	const response = await fetch(`lang/${lang}.json`);
+	return response.json();
+	}
+	
