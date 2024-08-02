@@ -136,7 +136,8 @@
 	window.addEventListener('DOMContentLoaded', async () => {
 	/* After the page is loaded, this event kicks in and sets all the text values per object in either Dutch / nl or English en*/
 		var userLang = navigator.language || navigator.userLanguage; 
-		const userPreferredLanguage = userLang || 'nl';
+		var langCode = userLang.slice(0, 2);
+		const userPreferredLanguage = langCode || 'nl';
 		const langData = await fetchLanguageData(userPreferredLanguage);
 		updateContent(langData);
 	});
