@@ -92,12 +92,13 @@ async function launchBrowserMicrophoneAllowPrompt () {
 
 async function queryBrowserMicrophonePermission () {
 	const result = await navigator.permissions.query({ name: 'microphone' });
-
+	
 	if (result.state == 'granted') {
 		} else if (result.state == 'prompt') {
 
 		} else if (result.state == 'denied') {
 			if (document.getElementById("stepWarningSettingsInfo").innerHTML == "") {
+				
 				showIssue("audioinput", "<font color='red'>" + document.getElementById("Error0").innerHTML + "<font>");	
 				showIssue("audiooutput", "<font color='red'>" + document.getElementById("Error1").innerHTML + "<font>");	
 			}
@@ -157,8 +158,15 @@ function execStep(stepId) { //Function which does the visuals for each step + tr
 		document.getElementById("stepOverlay2").style.opacity = 100;
 		document.getElementById("stepOverlay2").style.backgroundColor = "transparent";	
 		document.getElementById("stepWarningSettings").style.display = "none";
-		document.getElementById("stepWarningSettingsInfo").innerHTML = "";
-		execStep(2);
+		//document.getElementById("stepWarningSettingsInfo").innerHTML = "";
+		
+		setTimeout(function(){
+			if (document.getElementById("stepWarningSettingsInfo").innerHTML == "") {
+				execStep(2); // Wait for theclick event to be finished before initiating step 2 to make sure not already an issue occured.
+				}
+		}, 500);
+		
+		
 		}
 	
 	if (stepId == 2){
@@ -366,7 +374,7 @@ function getDefaultDevice(deviceType, spanToPopulate ) { //Functions collects th
 				if (`${device.kind}` != "videoinput") {
 					if (`${device.label}` == "" && document.getElementById("stepWarningSettingsInfo").innerHTML == "") {
 						//If label is Null this indicates that no permission was given in the browser for accessing the microfoon (could be a popup)
-						showIssue(deviceType, "<font color='red'>Geen browser permissie om microfoon/speaker te gebruiken.</font>");
+						showIssue(deviceType, "<font color='red'>" + document.getElementById("Error0").innerHTML + "<font>");
 						return true;
 					}
 
@@ -395,19 +403,30 @@ UI / Language functions
 ***********************************
 Set of functions to support dual language
 */
-function updateContent(langData) { //Function which updates all DOM elements with the value per key
+function updateContent(langData) { //Function which updates all DOM elements with the value per key i.e. dual language support
+	//Function which updates all DOM elements with the value per key i.e. dual language support
+	// Returns: boolean, true is successfull, happy coding :-D
+	// Parameter 1: <none>
+
 	document.querySelectorAll('[data-i18n]').forEach(element => {
 		const key = element.getAttribute('data-i18n');
 		element.textContent = langData[key];
 		});
+		
+	//Buttons do not like to be updated with element.textContent.. so we do the buttons seperately.
 	document.getElementById("buttonStep1").value = langData["buttonStep1"];
 	document.getElementById("buttonStep2").value = langData["buttonStep2"];
 	document.getElementById("buttonStep3a").value = langData["buttonStep3a"];
 	document.getElementById("buttonStep3b").value = langData["buttonStep3b"];	
 	document.getElementById("buttonStep3_1").value = langData["buttonStep3_1"];
+	return true;
 	}
 
-async function fetchLanguageData(lang) { // // Function which gets the browser language and loads the appropriate json file.
+async function fetchLanguageData(lang) { // Function which gets the browser language and loads the appropriate lang json file.
+	//Function which gets the browser language and loads the appropriate lang json file.
+	// Returns: the json object. 
+	// Parameter 1: <none>
+
 	const response = await fetch(`lang/${lang}.json`);
 	return response.json();
 	}
