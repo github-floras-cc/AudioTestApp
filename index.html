@@ -109,6 +109,7 @@
 
 <div class="mediaObjects">
 	<audio id="gum-local"></audio>
+	<! –– This elements are sitting here as I only want to load the en/nl file once and re-use the values for jscript errors and popups. In a future release we can make this more beautiful––>
 	<span data-i18n="Error0" id="Error0"></span>
 	<span data-i18n="Error1" id="Error1"></span>
 	<span data-i18n="Error2" id="Error2"></span>
@@ -125,6 +126,7 @@
 	const audio = document.querySelector('audio');
 	const constraints = window.constraints = {audio: true, video: false};
 	const MIC_PERM_BUTTON = document.querySelector('#buttonStep1');
+	/* After button 1 is clicked, this event kicks in and tries to open the mic and reads permission, throws an error and stops if no access is granted, otherwise will result in step 2*/
 		MIC_PERM_BUTTON.addEventListener('click', async ev => {
 		console.debug('Mic perm:', 'button click:', ev);
 		setTimeout(() => queryBrowserMicrophonePermission(), 200);
@@ -133,6 +135,7 @@
 	});
 
 	window.addEventListener('DOMContentLoaded', async () => {
+	/* After the page is loaded, this event kicks in and sets all the text values per object in either Dutch / nl or English en*/
 		var userLang = navigator.language || navigator.userLanguage; 
 		const userPreferredLanguage = userLang || 'nl';
 		const langData = await fetchLanguageData(userPreferredLanguage);
